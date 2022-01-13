@@ -12,13 +12,14 @@ namespace lab9zadacha1
         {
             int a = 0;
             int b = 0;
+            //int mathSymb = 0;
             int[] mathSymb = { 1, 2, 3, 4 };
             Console.WriteLine("Перед Вами простейший калькулятор!");
             try
             {
-                Console.Write("Введите целое число: A = ");
+                Console.Write("Укажите первое целое число: A=");
                 a = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Введите целое число: B = ");
+                Console.Write("Укажите второе целое число: B=");
                 b = Convert.ToInt32(Console.ReadLine());
             }
             catch (FormatException ex)
@@ -27,12 +28,12 @@ namespace lab9zadacha1
                 return;
             }
 
-            Console.WriteLine(@"Введите код операции:
-    1 - сложение
-    2 - вычитание
-    3 - произведение
-    4 - частное");
-            Console.Write("Выш выбор: ");
+            Console.WriteLine(@"Введите код операции из списка:
+                1 - сложение
+                2 - вычитание
+                3 - произведение
+                4 - частное");
+            Console.Write("Вы выбрали: ");
 
 
             int numberSymbol = 0;
@@ -40,19 +41,18 @@ namespace lab9zadacha1
             try
             {
                 numberSymbol = Convert.ToInt32(Console.ReadLine());
-                int symbol = mathSymb[-1 + numberSymbol];
+                int symbol = mathSymb[numberSymbol];
             }
             catch (FormatException)
             {
-                Console.WriteLine("Ошибка. Некорректный ввод.");
+                Console.WriteLine("Ошибка!");
                 return;
             }
             catch (IndexOutOfRangeException)
             {
-                Console.WriteLine("Ошибка. Нет операции с выбранным номером.");
+                Console.WriteLine("Ошибка. Нет операции с таким номером.");
                 return;
             }
-
             double action = 0;
             try
             {
@@ -76,11 +76,10 @@ namespace lab9zadacha1
             catch (DivideByZeroException ex)
             {
                 Console.WriteLine(ex.Message);
-
                 return;
             }
 
-            Console.WriteLine("Результат = {0}", action);
+            Console.WriteLine("Результат действия: {0}", action);
             Console.ReadKey();
         }
     }
